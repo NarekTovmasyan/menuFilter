@@ -15,7 +15,7 @@ function displayMenuItems(menuItems) {
             <div class="item-info">
               <header>
                 <h4>${item.title}</h4>
-                <h4 class="price">${item.price}</h4>
+                <h4 class="price">$${item.price}</h4>
               </header>
               <p class="item-text">
                 ${item.desc}
@@ -47,7 +47,7 @@ buttons.forEach((filterBtn) => {
       <div class="item-info">
         <header>
           <h4>${item.title}</h4>
-          <h4 class="price">${item.price}</h4>
+          <h4 class="price">$${item.price}</h4>
         </header>
         <p class="item-text">
           ${item.desc}
@@ -65,12 +65,6 @@ search.addEventListener("keyup", (e) => {
     searchText = e.target.value;
     refresh()
 });
-
-search.addEventListener("search", (e) => {
-    displayMenuItems(menu);
-
-});
-
 let id;
 
 function refresh() {

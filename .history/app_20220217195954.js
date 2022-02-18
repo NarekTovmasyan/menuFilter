@@ -1,21 +1,23 @@
 import { menu } from "./data.js";
 
+// get parent element
 const sectionCenter = document.querySelector(".section-center");
 const btnContainer = document.querySelector(".btn-container");
+// display all items when page loads
 window.addEventListener("DOMContentLoaded", function() {
-    displayMenuItems(menu);
+    diplayMenuItems(menu);
     displayMenuButtons();
 });
 
-function displayMenuItems(menuItems) {
+function diplayMenuItems(menuItems) {
     let displayMenu = menuItems.map(function(item) {
-
+        // console.log(item);
         return `<article class="menu-item">
             <img src=${item.img} alt=${item.title} class="photo" />
             <div class="item-info">
               <header>
                 <h4>${item.title}</h4>
-                <h4 class="price">${item.price}</h4>
+                <h4 class="price">$${item.price}</h4>
               </header>
               <p class="item-text">
                 ${item.desc}
@@ -24,69 +26,45 @@ function displayMenuItems(menuItems) {
           </article>`;
     });
     displayMenu = displayMenu.join("");
+    // console.log(displayMenu);
 
     sectionCenter.innerHTML = displayMenu;
 }
 
-function displayMenuButtons() {}
+function displayMenuButtons() {
+    //add display buttons here
+
+}
+console.log(displayMenuButtons());
 
 const buttons = document.querySelectorAll(".filter-btn");
-buttons.forEach((filterBtn) => {
+buttons.forEach(filterBtn => {
     filterBtn.addEventListener("click", () => {
         const value = filterBtn.getAttribute("data-id");
         if (value === "all") {
-            displayMenuItems(menu);
-            return;
+            return diplayMenuItems(menu);
         }
-        const filterArr = menu.filter((item) => item.category === value);
+        const filterArr = menu.filter(item => item.category === value);
 
-        let card = filterArr
-            .map(function(item) {
-                return `<article class="menu-item">
+        let card = filterArr.map(function(item) {
+            return `<article class="menu-item">
       <img src=${item.img} alt=${item.title} class="photo" />
       <div class="item-info">
         <header>
           <h4>${item.title}</h4>
-          <h4 class="price">${item.price}</h4>
+          <h4 class="price">$${item.price}</h4>
         </header>
         <p class="item-text">
           ${item.desc}
         </p>
       </div>
     </article>`;
-            })
-            .join("");
+        }).join("");
         sectionCenter.innerHTML = card;
-    });
-});
-let searchText = "";
-let search = document.querySelector("input");
-search.addEventListener("keyup", (e) => {
-    searchText = e.target.value;
-    refresh()
-});
-
-search.addEventListener("search", (e) => {
-    displayMenuItems(menu);
-
-});
-
-let id;
-
-function refresh() {
-    if (id !== undefined) {
-        clearTimeout(id);
-    }
-    id = setTimeout(() => {
-        console.log("running");
-        render()
-    }, 500);
-}
-
-function render() {
-    let searchArr = menu.filter(item => {
-        return item.desc.indexOf(searchText) !== -1;
     })
-    displayMenuItems(searchArr)
-}
-render()
+});
+const text = "";
+const search = document.querySelector("input");
+search.addEventListener("keyup", (e) => {
+
+})
